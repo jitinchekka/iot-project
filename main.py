@@ -72,11 +72,6 @@ for i in range(0, 30):
 # Drop first row
 df.drop(df.index[0], inplace=True)
 
-import streamlit as st
-
-st.line_chart(df["temp"])
-st.line_chart(df["current"])
-st.line_chart(df["gas"])
 
 # Convert class to int
 df["class"] = df["class"].astype(int)
@@ -93,4 +88,13 @@ gnb.fit(X, y)
 X_test = [[30, 5, 100]]
 y_test = [0]
 y_pred = gnb.predict(X_test)
-print("Predicted class: ", y_pred)
+print("Predicted class: ", y_pred[0])
+
+import streamlit as st
+
+# Print the predicted class
+if y_pred == 0:
+    st.write("Predicted class: safe")
+else:
+    st.write("Predicted class: unsafe")
+
